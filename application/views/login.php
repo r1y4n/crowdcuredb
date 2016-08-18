@@ -37,6 +37,7 @@
 		<!-- BEGIN LOGIN FORM -->
 		<form class="form-vertical login-form" action="index.html">
 			<h3 class="form-title">Login to your account</h3>
+			<?= $msg ?>
 			<div class="alert alert-error hide">
 				<button class="close" data-dismiss="alert"></button>
 				<span>Enter any username and password.</span>
@@ -47,7 +48,7 @@
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="icon-user"></i>
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username"/>
+						<input class="m-wrap placeholder-no-fix" type="text" placeholder="Username" name="username" id="uname"/>
 					</div>
 				</div>
 			</div>
@@ -56,7 +57,7 @@
 				<div class="controls">
 					<div class="input-icon left">
 						<i class="icon-lock"></i>
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password"/>
+						<input class="m-wrap placeholder-no-fix" type="password" placeholder="Password" name="password" id="pass"/>
 					</div>
 				</div>
 			</div>

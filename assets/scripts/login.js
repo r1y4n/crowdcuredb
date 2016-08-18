@@ -48,7 +48,30 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "verifylogin";
+	            	$.post( "verifylogin", { //name: "haha", pass: "khakha" } );
+	            			username: $('#uname').val(), 
+	            			password: $('#pass').val() 
+	            		},
+	            		function(data, status) {
+	            			if( data == "true" ) {
+	            				window.location.href = "dashboard";
+	            			}
+	            			else {
+        						//window.location.href = "login";
+        					}
+    					}
+    				);
+	            	//$.post("verifylogin",
+				    //{
+				    //    name: username,
+				    //    pass: password
+				    //},
+				    //function(data, status){
+				    //	if( data == true )
+				    //   	window.location.href = "dashboard";
+				    //	else
+				    //		window.location.href = "verifylogin";
+				    //});	                
 	            }
 	        });
 
@@ -98,14 +121,14 @@ var Login = function () {
 	            },
 
 	            submitHandler: function (form) {
-	                window.location.href = "index.html";
+	                window.location.href = "passwordreset";
 	            }
 	        });
 
 	        $('.forget-form input').keypress(function (e) {
 	            if (e.which == 13) {
 	                if ($('.forget-form').validate().form()) {
-	                    window.location.href = "index.html";
+	                    window.location.href = "passwordreset";
 	                }
 	                return false;
 	            }

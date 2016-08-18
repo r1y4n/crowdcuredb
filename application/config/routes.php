@@ -54,6 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['verifylogin'] = 'login/verifyUser';
+$route['verifylogin'] = 'login/createSession';
+$route['logout'] = 'login/killSession';
 
 $route['dashboard'] = 'user';
