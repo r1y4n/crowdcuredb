@@ -5,7 +5,7 @@
 <!-- BEGIN HEAD -->
 <head>
 	<meta charset="utf-8" />
-	<title>CrowdCureDB | Login Page</title>
+	<title>CrowdCureDB | Login</title>
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -29,7 +29,7 @@
 <body class="login">
 	<!-- BEGIN LOGO -->
 	<div class="logo">
-		<img src="assets/img/logo-big.png" alt="" />
+		<img src="assets/img/logo.png" alt="" />
 	</div>
 	<!-- END LOGO -->
 	<!-- BEGIN LOGIN -->
@@ -62,9 +62,9 @@
 				</div>
 			</div>
 			<div class="form-actions">
-				<label class="checkbox">
+				<!--<label class="checkbox">
 				<input type="checkbox" name="remember" value="1"/> Remember me
-				</label>
+				</label>-->
 				<button type="submit" class="btn green pull-right">
 				Login <i class="m-icon-swapright m-icon-white"></i>
 				</button>            
