@@ -5,7 +5,7 @@ class User extends CI_Controller {
 
 	function __construct() {
    		parent::__construct();
-   		//$this->load->model( 'UserModel', 'userModel', TRUE );
+   		$this->load->model( 'UserModel', 'userModel', TRUE );
         $this->load->library('session');
         $this->load->helper('url');
  	}
@@ -20,9 +20,12 @@ class User extends CI_Controller {
 			else {
 				$data['msg'] = "";
 			}
-			$data['userData'] = $this->session->userdata('loggedIn');
-			$user_type_id = $data['userData']['type_id'];
-			if( $user_type_id == 1 ) {
+			$data['sessionData'] = $this->session->userdata('loggedIn');
+			$data['userData'] = $this->userModel->getUserData( $data['sessionData']['userid'] );
+			$data['userData']['username'] = $data['sessionData']['username'];
+			$user_type_id = $data['sessionData']['usertypeid'];
+			$this->load->view( 'dashboard', $data );
+			/*if( $user_type_id == 1 ) {
 				$this->load->view( 'expertuser', $data );
 			}
 			else if( $data['userData']['type_id'] == 2 ) {
@@ -30,10 +33,27 @@ class User extends CI_Controller {
 			}
 			else {
 				$this->load->view( 'generaluser', $data );
-			}
+			}*/
 		}
 		else {
 			redirect( 'login', 'refresh' );
 		}
+	}
+
+	public function getAllExperts() {
+		$data = $this->userModel->getAllExperts();
+		if( $data == FALSE ) {
+			$retData = array(
+				"verdict" => "failure",
+				"content" => ""
+			);
+		}
+		else {
+			$retData = array(
+				"verdict" => "success",
+				"content" => $data
+			);
+		}
+		echo json_encode( $retData );
 	}
 }

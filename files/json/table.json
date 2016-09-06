@@ -1,0 +1,20 @@
+{
+	"pips": {
+		"columns": [{
+			"cdname": "Protein Name",
+			"cname": "protein"
+		}, {
+			"cdname": "Accession Number",
+			"cname": "accession"
+		}]
+	},
+	"unihi": {
+		"columns": [{
+			"cdname": "Protein Name",
+			"cname": "protein"
+		}, {
+			"cdname": "Gene ID",
+			"cname": "gene"
+		}]
+	}
+}

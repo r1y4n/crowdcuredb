@@ -60,6 +60,13 @@ var TableManaged = function () {
 
             // begin second table
             $('#sample_2').dataTable({
+                "aoColumns": [
+                  { "bSortable": false },
+                  null,
+                  null,
+                  null,
+                  null
+                ],
                 "aLengthMenu": [
                     [5, 15, 20, -1],
                     [5, 15, 20, "All"] // change per page values here
@@ -95,9 +102,9 @@ var TableManaged = function () {
                 jQuery.uniform.update(set);
             });
 
-            jQuery('#sample_2_wrapper .dataTables_filter input').addClass("m-wrap small"); // modify table search input
+            jQuery('#sample_2_wrapper .dataTables_filter input').addClass("m-wrap medium"); // modify table search input
             jQuery('#sample_2_wrapper .dataTables_length select').addClass("m-wrap small"); // modify table per page dropdown
-            jQuery('#sample_2_wrapper .dataTables_length select').select2(); // initialzie select2 dropdown
+            //jQuery('#sample_2_wrapper .dataTables_length select').select2(); // initialzie select2 dropdown
 
             // begin: third table
             $('#sample_3').dataTable({
