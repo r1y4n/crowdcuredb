@@ -186,7 +186,7 @@ var UIJQueryUI = function () {
         //main function to initiate the module
         init: function () {
             handleDatePickers();
-            handleDialogs();
+            handleDialogs();            
         }
 
     };

@@ -6,7 +6,7 @@ class UserModel extends CI_Model {
         parent::__construct();                
     }
 
-    public function insertUser( $userData ) { 
+    /*public function insertUser( $userData ) { 
     	$string = array(
         	'id' => '',
             'f_name' => $userData['form-first-name'],
@@ -49,10 +49,10 @@ class UserModel extends CI_Model {
     public function isDuplicateEmail( $email ) {     
         $this->db->get_where( 'user', array( 'email' => $email ), 1 );
         return $this->db->affected_rows() > 0 ? TRUE : FALSE;         
-    }  
+    }*/
     
     public function isValidUser( $username, $password ) {
-    	$this->db->select( 'id, user_id, user_type' );
+    	$this->db->select( 'id, username, user_id, user_type_id' );
     	$this->db->where( array( 'username' => $username, 'password' => SHA1( $password ) ) );
     	$query = $this->db->get( 'login' );
     	if( $this->db->affected_rows() == 1 ) {
@@ -64,42 +64,69 @@ class UserModel extends CI_Model {
             $this->db->update( 'login', $data );
             $userData = array(
                 'verdict' => TRUE,
-                'user_id' => $row->user_id,
-                'user_type' => $row->user_type
+                'username' => $row->username,
+                'userid' => $row->user_id,
+                'usertypeid' => $row->user_type_id
             );
-    		return $userData;
     	}
     	else {
-    		return FALSE;
+            $userData = array( 'verdict' => FALSE );
     	}
+        return $userData;
     }
 
     public function getUserData( $userID ) {
-        $this->db->select( 'id, fname, lname, dob, mobile, email, user_type_id' );
-        $this->db->where( array( 'id' => $userID ) );
-        $query = $this->db->get( 'user' );
-    	$row = $query->row();
-    	$data = array();
-    	$data['userID'] = $row->id;
-    	$data['fname'] = $row->fname;
-    	$data['lname'] = $row->lname;
-    	$data['email'] = $row->email;
-    	$data['mobile'] = $row->mobile;
-        $data['type_id'] = $row->user_type_id;
-    	//$data['country'] = $row->country;
-        //$data['institution'] = $row->institution;
-    	$dobt = new DateTime( trim( $row->dob ) );
-    	$data['dob'] = $dobt->format( 'd F Y' );
+        $this->db->select( 'user.id, fname, lname, dob, mobile, email, institution.name as institution, country.nicename as country, user_type.type, user_type.id as type_id, user_status.status' );
+        $this->db->from( 'user' );
+        $this->db->join( 'institution', 'user.institution_id = institution.id', 'left' );
+        $this->db->join( 'country', 'user.country_id = country.id', 'left' );
+        $this->db->join( 'user_type', 'user.user_type_id = user_type.id', 'left' );
+        $this->db->join( 'user_status', 'user.user_status_id = user_status.id', 'left' );
+        $this->db->where( array( 'user.id' => $userID ) );
+        $query = $this->db->get();
+    	if( $this->db->affected_rows() == 1 ) {
+            $row = $query->row();
+        	$data = array();
+        	$data['userID'] = $row->id;
+        	$data['fname'] = $row->fname;
+        	$data['lname'] = $row->lname;
+        	$data['email'] = $row->email;
+        	$data['mobile'] = $row->mobile;
+            $data['type'] = $row->type;
+            $data['typeid'] = $row->type_id;
+        	$data['country'] = $row->country;
+            $data['institution'] = $row->institution;
+            $data['status'] = $row->status;
+        	$dobt = new DateTime( trim( $row->dob ) );
+        	$data['dob'] = $dobt->format( 'd F Y' );
+            return $data;
+        }
+        else {
+            return FALSE;
+        }
+    }
 
-        $this->db->select( 'type' );
-        $this->db->where( array( 'id' => $row->user_type_id ) );
-        $query = $this->db->get( 'user_type' );
-        $row = $query->row();
-        $data['type'] = $row->type;
-    	//$dobt = new DateTime( trim( $row->creation_time ) );
-    	//$data['creation_time'] = $dobt->format( 'd F Y h:i:s A' );
-	    //}
-	    //print_r( $data );
-    	return $data;
+    public function getAllExperts() {
+        $this->db->select( 'expert.id as eid, user.id as uid, fname, lname, affiliation.name as affiliation, institution.name as institution, country.nicename as country, expert.total as total, expert.correct as correct' );
+        $this->db->from( 'user' );
+        $this->db->join( 'expert', 'user.id = expert.user_id', 'right' );
+        $this->db->join( 'affiliation', 'user.affiliation_id = affiliation.id', 'left' );
+        $this->db->join( 'institution', 'user.institution_id = institution.id', 'left' );
+        $this->db->join( 'country', 'user.country_id = country.id', 'left' );
+        $query = $this->db->get();
+        $data = array();
+        $cnt = 0;
+        foreach( $query->result() as $row ) {        
+            $data[$cnt] = array(
+                "id"            =>  $row->eid,
+                "uid"           =>  $row->uid,
+                "name"          =>  $row->fname . " " . $row->lname,
+                "affiliation"   =>  $row->affiliation,
+                "institution"   =>  $row->institution,
+                "country"       =>  $row->country
+            );
+            $cnt++;
+        }
+        return $data;
     }
 } 

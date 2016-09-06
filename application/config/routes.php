@@ -53,8 +53,15 @@ $route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-
 $route['verifylogin'] = 'login/createSession';
 $route['logout'] = 'login/killSession';
 
 $route['dashboard'] = 'user';
+
+$route['createquery'] = 'query/create';
+$route['getppitables'] = 'query/gettables';
+$route['submitquery'] = 'query/submit';
+
+$route['ongoingquery'] = 'query/ongoing';
+
+$route['getexpertsall'] = 'user/getAllExperts';

@@ -48,8 +48,10 @@ class Login extends CI_Controller {
 		$username = $this->input->post( 'username' );
 		$userData = $this->userModel->isValidUser( $username, $password );
 		if( $userData['verdict'] != FALSE ) {
-			$sessionData = $this->userModel->getUserData( $userData['user_id'] );
-			$sessionData['username'] = $username;
+			$sessionData = $this->userModel->getUserData( $userData['userid'] );
+			$sessionData['username'] = $userData['username'];
+			$sessionData['userid'] = $userData['userid'];
+			$sessionData['usertypeid'] = $userData['usertypeid'];
 			$this->session->set_userdata( 'loggedIn', $sessionData );
 			return TRUE;
 		}
