@@ -439,7 +439,7 @@ function getConfirmationHtml() {
 	var html = "";
 	html = html + "<div class='well' style='text-align: center;'>Your query has been received with ID # " + data.serial + "<br>";
 	html = html + "Check the status of the query in your Pending Queries Page.<br>";
-	html = html + "<a class='btn green' href='pendingquery' id='submitquerybtn'>";
+	html = html + "<a class='btn green' href='ongoingquery' id='submitquerybtn'>";
 	html = html + "Pending Queries</i></a>";
 	html = html + "</div>";
 }

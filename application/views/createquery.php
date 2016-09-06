@@ -48,49 +48,18 @@
 								Dashboard
 								</a>
 							</li>
-							<?php
-								if( $sessionData['usertypeid'] == 2 ) {
-									echo "<li>
-										<a data-toggle='dropdown' class='dropdown-toggle' href='javascript:;'>
-											User Management
-											<span class='arrow'></span>
-										</a>
-										<ul class='dropdown-menu'>
-											<li><a href=''>Experts</a></li>
-											<li><a href=''>Users</a></li>
-										</ul>	
-									</li>
-									<li>
-										<a href=''> Query Management</a>
-									</li>";
-								}
-								else if( $sessionData['usertypeid'] == 1 ) {
-									echo "<li>
-										<a data-toggle='dropdown' class='dropdown-toggle' href='javascript:;'>
-											Queries
-											<span class='arrow'></span>
-										</a>
-										<ul class='dropdown-menu'>
-											<li><a href=''>Pending</a></li>
-											<li><a href=''>Archive</a></li>
-										</ul>
-									</li>";
-								}
-								else {
-									echo "<li  class='active'>
-										<a data-toggle='dropdown' class='dropdown-toggle' href='javascript:;'>
-											<span class='selected'></span> 
-											Queries
-											<span class='arrow'></span>
-										</a>
-										<ul class='dropdown-menu'>
-											<li><a href='createquery'>Create</a></li>
-											<li><a href=''>Pending</a></li>
-											<li><a href=''>Archive</a></li>
-										</ul>
-									</li>";
-								}
-							?>
+							<li  class='active'>
+								<a data-toggle='dropdown' class='dropdown-toggle' href='javascript:;'>
+									<span class='selected'></span> 
+									Queries
+									<span class='arrow'></span>
+								</a>
+								<ul class='dropdown-menu'>
+									<li><a href='createquery'>Create</a></li>
+									<li><a href='ongoingquery'>Ongoing</a></li>
+									<li><a href='archivequery'>Archive</a></li>
+								</ul>
+							</li>
 						</ul>
 					</div>
 				</div>

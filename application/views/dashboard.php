@@ -67,8 +67,8 @@
 											<span class='arrow'></span>
 										</a>
 										<ul class='dropdown-menu'>
-											<li><a href=''>Pending</a></li>
-											<li><a href=''>Archive</a></li>
+											<li><a href='ongoingquery'>Ongoing</a></li>
+											<li><a href='archivequery'>Archive</a></li>
 										</ul>
 									</li>";
 								}
@@ -80,8 +80,8 @@
 										</a>
 										<ul class='dropdown-menu'>
 											<li><a href='createquery'>Create</a></li>
-											<li><a href=''>Pending</a></li>
-											<li><a href=''>Archive</a></li>
+											<li><a href='ongoingquery'>Ongoing</a></li>
+											<li><a href='archivequery'>Archive</a></li>
 										</ul>
 									</li>";
 								}

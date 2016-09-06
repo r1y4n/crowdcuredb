@@ -62,6 +62,6 @@ $route['createquery'] = 'query/create';
 $route['getppitables'] = 'query/gettables';
 $route['submitquery'] = 'query/submit';
 
-$route['pendingquery'] = 'query/pending';
+$route['ongoingquery'] = 'query/ongoing';
 
 $route['getexpertsall'] = 'user/getAllExperts';

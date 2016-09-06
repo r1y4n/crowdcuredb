@@ -44,18 +44,18 @@ class Query extends CI_Controller {
 		echo json_encode( $qD );
 	}
 
-	public function pending() {
+	public function ongoing() {
 		$data = array();
 		if( $this->session->has_userdata('loggedIn') ) {
 			$data['sessionData'] = $this->session->userdata('loggedIn');
 			if( $data['sessionData']['usertypeid'] == 3 ) {
-				$this->showPendingToUser( $data );
+				$this->showOngoingToUser( $data );
 			} 
 			else if( $data['sessionData']['usertypeid'] == 2 ) {
-				$this->showPendingToAdmin( $data );
+				$this->showOngoingToAdmin( $data );
 			} 
 			else {
-				$this->showPendingToExpert( $data );
+				$this->showOngoingToExpert( $data );
 			}
 		}
 		else {
@@ -63,7 +63,7 @@ class Query extends CI_Controller {
 		}
 	}
 
-	private function showPendingToUser( $data ) {
+	private function showOngoingToUser( $data ) {
 		$data['queryData'] = $this->session->userdata('queryData');
 		$this->load->view( 'pendingQueryUser', $data );
 	}

@@ -172,48 +172,17 @@
 					Dashboard                        
 					</a>
 				</li>
-				<?php
-					if( $sessionData['usertypeid'] == 2 ) {
-						echo "<li>
-							<a href=''>
-								User Management
-								<span class='arrow'></span>
-							</a>
-							<ul class='sub-menu'>
-								<li><a href=''>Experts</a></li>
-								<li><a href=''>Users</a></li>
-							</ul>	
-						</li>
-						<li>
-							<a href=''> Query Management</a>
-						</li>";
-					}
-					else if( $sessionData['usertypeid'] == 1 ) {
-						echo "<li>
-							<a href=''>
-								Queries
-								<span class='arrow'></span>
-							</a>
-							<ul class='sub-menu'>
-								<li><a href=''>Pending</a></li>
-								<li><a href=''>Archive</a></li>
-							</ul>
-						</li>";
-					}
-					else {
-						echo "<li>
-							<a href=''> 
-								Queries
-								<span class='arrow'></span>
-							</a>
-							<ul class='sub-menu'>
-								<li class='active'><a class='active' href='createquery'>Create</a></li>
-								<li><a href=''>Pending</a></li>
-								<li><a href=''>Archive</a></li>
-							</ul>
-						</li>";
-					}
-				?>
+				<li>
+					<a href=''> 
+						Queries
+						<span class='arrow'></span>
+					</a>
+					<ul class='sub-menu'>
+						<li><a href='createquery'>Create</a></li>
+						<li class='active'><a class='active' href='ongoingquery'>Ongoing</a></li>
+						<li><a href='archivequery'>Archive</a></li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 		<!-- END EMPTY PAGE SIDEBAR -->
@@ -291,7 +260,7 @@
 								<i class="icon-angle-right"></i>
 							</li>
 							<li>
-								<a href="createquery">Create</a>
+								<a href="createquery">Ongoing</a>
 								<!--<i class="icon-angle-right"></i>-->
 							</li>
 							<!--<li><a href="#">Horzontal Menu 1</a></li>-->
